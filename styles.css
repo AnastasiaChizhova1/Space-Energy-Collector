@@ -1,0 +1,125 @@
+body {
+    background: linear-gradient(to bottom, #1e1e2f, #000000);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #4a90e2;
+}
+
+#gameBoard {
+    display: grid;
+    gap: 5px;
+    margin: 20px auto;
+    width: 300px;
+    height: 300px;
+}
+
+.cell {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.cell:hover {
+    transform: scale(1.1);
+}
+
+.cell.appear {
+    animation: appear 0.3s ease-in;
+}
+
+.cell.disappear {
+    animation: disappear 0.3s ease-out forwards;
+}
+
+@keyframes appear {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes disappear {
+    to {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.red { background: #ff4444; box-shadow: 0 0 10px #ff4444; }
+.blue { background: #4a90e2; box-shadow: 0 0 10px #4a90e2; }
+.green { background: #4caf50; box-shadow: 0 0 10px #4caf50; }
+.yellow { background: #ffeb3b; box-shadow: 0 0 10px #ffeb3b; }
+
+#sequence {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+#timer {
+    font-size: 1.2rem;
+    color: #ff4444;
+    margin: 10px 0;
+}
+
+.energy-bar {
+    width: 100%;
+    max-width: 300px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+#energy {
+    height: 20px;
+    background: #4caf50;
+    transition: width 0.3s, background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+#score {
+    font-size: 1.2rem;
+    color: #4caf50;
+}
+
+button {
+    background: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #357abd;
+}
