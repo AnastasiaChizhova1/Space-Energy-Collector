@@ -6,14 +6,14 @@ const { Telegraf } = require('telegraf');
          ctx.reply('Welcome to Space Energy Collector!', {
              reply_markup: {
                  inline_keyboard: [
-                     [{ text: 'Play Space Energy Collector', callback_game: { game_short_name: '@Game_Cosmic_kollector_Energy_bot' } }]
+                     [{ text: 'Play Space Energy Collector', callback_game: { game_short_name: '@Игра Космический Коллектор Энергии.' } }]
                  ]
              }
          });
      });
 
      bot.on('callback_query', (ctx) => {
-         if (ctx.callbackQuery.game_short_name === '@Game_Cosmic_kollector_Energy_bot') {
+         if (ctx.callbackQuery.game_short_name === '@Игра Космический Коллектор Энергии.') {
              ctx.answerCallbackQuery({
                  url: 'https://space-energy-collector-dlvyt5sbe-anastasia-chizhovas-projects.vercel.app' // Замени на твой Vercel URL
              });
