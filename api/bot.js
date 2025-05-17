@@ -15,7 +15,7 @@ const { Telegraf } = require('telegraf');
      bot.on('callback_query', (ctx) => {
          if (ctx.callbackQuery.game_short_name === '@Игра Космический Коллектор Энергии.') {
              ctx.answerCallbackQuery({
-                 url: 'https://space-energy-collector-dlvyt5sbe-anastasia-chizhovas-projects.vercel.app' // Замени на твой Vercel URL
+                 url: 'https://space-energy-collector.vercel.app/' // Замени на твой Vercel URL
              });
          }
      });
