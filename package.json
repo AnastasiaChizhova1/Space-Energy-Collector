@@ -1,0 +1,7 @@
+{
+       "name": "space-energy-collector",
+       "version": "1.0.0",
+       "dependencies": {
+         "telegraf": "^4.16.3"
+       }
+     }
