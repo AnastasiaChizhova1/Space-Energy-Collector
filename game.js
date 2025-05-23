@@ -21,7 +21,7 @@ const timerDiv = document.getElementById("timer");
 function updateEnergy() {
     if (!energyDiv) return;
     energyDiv.style.width = `${energy}%`;
-    energyDiv.textContent = `Энергия: ${energy}%`;
+    energyDiv.textContent = '⚡'; // Заменяем текст на символ молнии
     if (energy > 60) {
         energyDiv.style.background = "#4caf50";
     } else if (energy > 30) {
