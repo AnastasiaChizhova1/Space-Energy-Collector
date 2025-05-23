@@ -218,16 +218,19 @@ function handleClick(event) {
     } else {
         energy -= 10;
         updateEnergy();
+        console.log("Энергия уменьшена до:", energy); // Отладка значения энергии
         if (energy <= 0) {
-    gameActive = false;
-    if (gameOverMessage) {
-        console.log("Игра окончена, отображаем сообщение");
-        gameOverMessage.style.display = "block";
-        gameOverMessage.textContent = `Игра окончена из-за нехватки энергии! Ты собрал ${score} последовательностей.`;
-    }
-    updateEnergy();
-    clearInterval(timerInterval);
-}
+            gameActive = false;
+            if (gameOverMessage) {
+                console.log("Игра окончена, отображаем сообщение");
+                gameOverMessage.style.display = "block";
+                gameOverMessage.textContent = `Игра окончена из-за нехватки энергии! Ты собрал ${score} последовательностей.`;
+            } else {
+                console.log("Ошибка: gameOverMessage не найден в DOM");
+            }
+            updateEnergy();
+            clearInterval(timerInterval);
+        }
     }
 }
 
