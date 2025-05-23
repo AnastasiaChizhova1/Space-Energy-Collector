@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="yandex-verification" content="код"> <!-- Замени на код от Яндекс после верификации -->
     <title>Космический Коллектор Энергии</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -12,17 +13,18 @@
         <p>Собери кристаллы в правильной последовательности!</p>
         <div id="timer">Время: 30</div>
         <div class="energy-bar">
-            <div id="energy">Энергия: 100%</div>
+            <div id="energy">⚡</div>
         </div>
         <div id="score">Собранные последовательности: 0</div>
         <div id="sequence"></div>
+        <div id="gameOverMessage" style="display: none;"></div> <!-- Добавляем этот div -->
         <div id="gameBoard"></div>
         <button onclick="startGame()">Новая игра</button>
         <div id="ad-container" style="margin-top: 20px;"></div>
-        <footer>
-            <p>Политика конфиденциальности: Мы можем собирать данные для рекламы (cookies, IP-адреса) и донатов (имя, email, платёжные данные через ЮKassa). Вы можете запросить удаление данных, написав на anastasiiachizhova98@gmail.com.</p>
-        </footer>
     </div>
+    <footer>
+        <p>Политика конфиденциальности: Мы можем собирать данные для рекламы (cookies, IP-адреса) и донатов (имя, email, платёжные данные через ЮKassa). Вы можете запросить удаление данных, написав на anastasiiachizhova98@gmail.com.</p>
+    </footer>
     <script src="game.js"></script>
 </body>
 </html>
