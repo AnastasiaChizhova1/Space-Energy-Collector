@@ -219,14 +219,15 @@ function handleClick(event) {
         energy -= 10;
         updateEnergy();
         if (energy <= 0) {
-            gameActive = false;
-            if (gameOverMessage) {
-                gameOverMessage.style.display = "block";
-                gameOverMessage.textContent = `Игра окончена из-за нехватки энергии! Ты собрал ${score} последовательностей.`; // Уточняем причину
-            }
-            updateEnergy();
-            clearInterval(timerInterval);
-        }
+    gameActive = false;
+    if (gameOverMessage) {
+        console.log("Игра окончена, отображаем сообщение");
+        gameOverMessage.style.display = "block";
+        gameOverMessage.textContent = `Игра окончена из-за нехватки энергии! Ты собрал ${score} последовательностей.`;
+    }
+    updateEnergy();
+    clearInterval(timerInterval);
+}
     }
 }
 
