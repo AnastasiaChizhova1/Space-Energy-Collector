@@ -10,19 +10,15 @@
     <div class="container">
         <h1>Космический Коллектор Энергии</h1>
         <p>Собери кристаллы в правильной последовательности!</p>
-        <div id="sequence"></div>
         <div id="timer">Время: 30</div>
-        <div id="gameBoard"></div>
         <div class="energy-bar">
-            <div id="energy" style="width: 100%;">Энергия: 100%</div>
+            <div id="energy">Энергия: 100%</div>
         </div>
         <div id="score">Собранные последовательности: 0</div>
+        <div id="sequence"></div>
+        <div id="gameBoard"></div>
         <button onclick="startGame()">Новая игра</button>
     </div>
-
-    <audio id="correctSound" src="correct.mp3"></audio>
-    <audio id="wrongSound" src="wrong.mp3"></audio>
-
     <script src="game.js"></script>
 </body>
 </html>
