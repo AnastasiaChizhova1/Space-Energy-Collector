@@ -20,7 +20,7 @@ const timerDiv = document.getElementById("timer");
 // Функция для обновления прогресс-бара энергии
 function updateEnergy() {
     if (!energyDiv) return;
-    energyDiv.style.width = energy === 0 ? '20px' : `${energy}%`; // Минимальная ширина 20px при 0 энергии
+    energyDiv.style.width = energy === 0 ? '0px' : `${energy}%`; // Минимальная ширина 20px при 0 энергии
     energyDiv.textContent = '⚡';
     if (energy > 60) {
         energyDiv.style.background = "#4caf50";
