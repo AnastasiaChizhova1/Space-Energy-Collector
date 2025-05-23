@@ -17,6 +17,7 @@ body {
     border-radius: 10px;
     max-width: 600px;
     width: 100%;
+    box-sizing: border-box; /* Убедимся, что padding не увеличивает размер */
 }
 
 h1 {
@@ -78,6 +79,9 @@ h1 {
 #sequence {
     font-size: 1.2rem;
     margin: 10px 0;
+    word-wrap: break-word; /* Перенос длинных слов */
+    max-width: 100%; /* Убедимся, что текст не выходит за контейнер */
+    padding: 10px; /* Добавим отступы для читаемости */
 }
 
 #timer {
@@ -122,4 +126,14 @@ button {
 
 button:hover {
     background: #357abd;
+}
+
+#ad-container {
+    margin-top: 20px;
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    text-align: center;
 }
