@@ -15,9 +15,10 @@ body {
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
-    max-width: 600px;
+    max-width: 700px; /* Увеличим ширину для длинных текстов */
     width: 100%;
-    box-sizing: border-box; /* Убедимся, что padding не увеличивает размер */
+    box-sizing: border-box;
+    min-height: 400px; /* Минимальная высота для размещения текста */
 }
 
 h1 {
@@ -79,9 +80,11 @@ h1 {
 #sequence {
     font-size: 1.2rem;
     margin: 10px 0;
-    word-wrap: break-word; /* Перенос длинных слов */
-    max-width: 100%; /* Убедимся, что текст не выходит за контейнер */
-    padding: 10px; /* Добавим отступы для читаемости */
+    word-wrap: break-word;
+    white-space: normal; /* Убедимся, что текст переносится */
+    max-width: 100%;
+    padding: 15px; /* Увеличим отступы */
+    line-height: 1.5; /* Улучшим читаемость */
 }
 
 #timer {
