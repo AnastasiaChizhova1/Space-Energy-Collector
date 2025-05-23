@@ -16,11 +16,10 @@ const sequenceDiv = document.getElementById("sequence");
 const energyDiv = document.getElementById("energy");
 const scoreDiv = document.getElementById("score");
 const timerDiv = document.getElementById("timer");
-const correctSound = document.getElementById("correctSound");
-const wrongSound = document.getElementById("wrongSound");
 
 // Функция для обновления прогресс-бара энергии
 function updateEnergy() {
+    if (!energyDiv) return;
     energyDiv.style.width = `${energy}%`;
     energyDiv.textContent = `Энергия: ${energy}%`;
     if (energy > 60) {
@@ -44,12 +43,11 @@ function startGame() {
     gameActive = true;
 
     updateEnergy();
-    scoreDiv.textContent = `Собранные последовательности: ${score}`;
-    timerDiv.textContent = `Время: ${timeLeft}`;
+    if (scoreDiv) scoreDiv.textContent = `Собранные последовательности: ${score}`;
+    if (timerDiv) timerDiv.textContent = `Время: ${timeLeft}`;
     createBoard();
     generateSequence();
     spawnCrystals();
-    updateSequenceDisplay();
     startTimer();
 }
 
@@ -63,17 +61,17 @@ function startTimer() {
         }
 
         timeLeft--;
-        timerDiv.textContent = `Время: ${timeLeft}`;
+        if (timerDiv) timerDiv.textContent = `Время: ${timeLeft}`;
 
         if (timeLeft <= 0) {
             energy -= 10;
             updateEnergy();
             timeLeft = 30;
-            timerDiv.textContent = `Время: ${timeLeft}`;
+            if (timerDiv) timerDiv.textContent = `Время: ${timeLeft}`;
 
             if (energy <= 0) {
                 gameActive = false;
-                sequenceDiv.textContent = `Игра окончена! Ты собрал ${score} последовательностей.`;
+                if (sequenceDiv) sequenceDiv.textContent = `Игра окончена! Ты собрал ${score} последовательностей.`;
                 updateEnergy();
                 clearInterval(timerInterval);
             }
@@ -83,6 +81,7 @@ function startTimer() {
 
 // Создаём игровое поле
 function createBoard() {
+    if (!gameBoard) return;
     gameBoard.style.gridTemplateColumns = `repeat(${boardSize}, 1fr)`;
     gameBoard.innerHTML = "";
     board = [];
@@ -111,6 +110,7 @@ function generateSequence() {
 
 // Обновляем отображение последовательности
 function updateSequenceDisplay() {
+    if (!sequenceDiv) return;
     sequenceDiv.innerHTML = "Собери: ";
     sequence.forEach((color, index) => {
         const span = document.createElement("span");
@@ -161,6 +161,7 @@ function spawnCrystals() {
 // Обновляем отображение клетки
 function updateCell(row, col) {
     const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+    if (!cell) return;
     cell.className = "cell";
     if (board[row][col]) {
         cell.classList.add(board[row][col]);
@@ -180,7 +181,6 @@ function handleClick(event) {
 
     const targetColor = sequence[currentSequenceIndex];
     if (color === targetColor) {
-        correctSound.play();
         const cell = event.target;
         cell.classList.add("disappear");
         setTimeout(() => {
@@ -191,12 +191,12 @@ function handleClick(event) {
 
         if (currentSequenceIndex === sequence.length) {
             score++;
-            scoreDiv.textContent = `Собранные последовательности: ${score}`;
+            if (scoreDiv) scoreDiv.textContent = `Собранные последовательности: ${score}`;
             currentSequenceIndex = 0;
             generateSequence();
             updateSequenceDisplay();
             timeLeft = 30;
-            timerDiv.textContent = `Время: ${timeLeft}`;
+            if (timerDiv) timerDiv.textContent = `Время: ${timeLeft}`;
 
             if (score % 5 === 0) {
                 boardSize++;
@@ -207,12 +207,11 @@ function handleClick(event) {
             updateSequenceDisplay();
         }
     } else {
-        wrongSound.play();
         energy -= 10;
         updateEnergy();
         if (energy <= 0) {
             gameActive = false;
-            sequenceDiv.textContent = `Игра окончена! Ты собрал ${score} последовательностей.`;
+            if (sequenceDiv) sequenceDiv.textContent = `Игра окончена! Ты собрал ${score} последовательностей.`;
             updateEnergy();
             clearInterval(timerInterval);
         }
