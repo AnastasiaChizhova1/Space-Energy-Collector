@@ -47,9 +47,10 @@ function startGame() {
     if (scoreDiv) scoreDiv.textContent = `Собранные последовательности: ${score}`;
     if (timerDiv) timerDiv.textContent = `Время: ${timeLeft}`;
     if (gameOverMessage) gameOverMessage.style.display = "none";
+    if (sequenceDiv) sequenceDiv.innerHTML = "";
     createBoard();
     generateSequence();
-    updateSequenceDisplay(); // Добавляем вызов, чтобы последовательность отображалась сразу
+    updateSequenceDisplay();
     spawnCrystals();
     startTimer();
 }
@@ -99,7 +100,7 @@ function createBoard() {
             cell.classList.add("cell");
             cell.dataset.row = i;
             cell.dataset.col = j;
-            cell.addEventListener("click", handleClick);
+            cell.addEventListener("click", handleClick); // Убеждаемся, что слушатель добавляется
             gameBoard.appendChild(cell);
             board[i][j] = null;
         }
@@ -112,7 +113,7 @@ function generateSequence() {
     for (let i = 0; i < 3; i++) {
         sequence.push(colors[Math.floor(Math.random() * colors.length)]);
     }
-    updateSequenceDisplay(); // Обновляем отображение сразу после генерации
+    updateSequenceDisplay();
 }
 
 // Обновляем отображение последовательности
@@ -167,12 +168,14 @@ function spawnCrystals() {
 
 // Обновляем отображение клетки
 function updateCell(row, col) {
-    const cell = document.querySelector(`[data-row="${row}"][data-col="${row}"]`);
+    const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
     if (!cell) return;
     cell.className = "cell";
     if (board[row][col]) {
         cell.classList.add(board[row][col]);
         cell.classList.add("appear");
+    } else {
+        cell.classList.remove("red", "blue", "green", "yellow", "appear");
     }
 }
 
@@ -184,7 +187,7 @@ function handleClick(event) {
     const col = parseInt(event.target.dataset.col);
     const color = board[row][col];
 
-    if (!color) return;
+    if (!color || !event.target.classList.contains("appear")) return; // Проверяем, что клетка активна
 
     const targetColor = sequence[currentSequenceIndex];
     if (color === targetColor) {
