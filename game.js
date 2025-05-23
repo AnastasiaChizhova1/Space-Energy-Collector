@@ -16,11 +16,12 @@ const sequenceDiv = document.getElementById("sequence");
 const energyDiv = document.getElementById("energy");
 const scoreDiv = document.getElementById("score");
 const timerDiv = document.getElementById("timer");
+const gameOverMessage = document.getElementById("gameOverMessage");
 
 // Функция для обновления прогресс-бара энергии
 function updateEnergy() {
     if (!energyDiv) return;
-    energyDiv.style.width = energy === 0 ? '20px' : `${energy}%`; // Минимальная ширина 20px при 0 энергии
+    energyDiv.style.width = energy === 0 ? '20px' : `${energy}%`;
     energyDiv.textContent = '⚡';
     if (energy > 60) {
         energyDiv.style.background = "#4caf50";
@@ -45,8 +46,10 @@ function startGame() {
     updateEnergy();
     if (scoreDiv) scoreDiv.textContent = `Собранные последовательности: ${score}`;
     if (timerDiv) timerDiv.textContent = `Время: ${timeLeft}`;
+    if (gameOverMessage) gameOverMessage.style.display = "none";
     createBoard();
     generateSequence();
+    updateSequenceDisplay(); // Добавляем вызов, чтобы последовательность отображалась сразу
     spawnCrystals();
     startTimer();
 }
@@ -71,7 +74,10 @@ function startTimer() {
 
             if (energy <= 0) {
                 gameActive = false;
-                if (sequenceDiv) sequenceDiv.textContent = `Игра окончена! Ты собрал ${score} последовательностей.`;
+                if (gameOverMessage) {
+                    gameOverMessage.style.display = "block";
+                    gameOverMessage.textContent = `Игра окончена! Ты собрал ${score} последовательностей.`;
+                }
                 updateEnergy();
                 clearInterval(timerInterval);
             }
@@ -106,6 +112,7 @@ function generateSequence() {
     for (let i = 0; i < 3; i++) {
         sequence.push(colors[Math.floor(Math.random() * colors.length)]);
     }
+    updateSequenceDisplay(); // Обновляем отображение сразу после генерации
 }
 
 // Обновляем отображение последовательности
@@ -160,7 +167,7 @@ function spawnCrystals() {
 
 // Обновляем отображение клетки
 function updateCell(row, col) {
-    const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+    const cell = document.querySelector(`[data-row="${row}"][data-col="${row}"]`);
     if (!cell) return;
     cell.className = "cell";
     if (board[row][col]) {
@@ -194,7 +201,6 @@ function handleClick(event) {
             if (scoreDiv) scoreDiv.textContent = `Собранные последовательности: ${score}`;
             currentSequenceIndex = 0;
             generateSequence();
-            updateSequenceDisplay();
             timeLeft = 30;
             if (timerDiv) timerDiv.textContent = `Время: ${timeLeft}`;
 
@@ -211,7 +217,10 @@ function handleClick(event) {
         updateEnergy();
         if (energy <= 0) {
             gameActive = false;
-            if (sequenceDiv) sequenceDiv.textContent = `Игра окончена! Ты собрал ${score} последовательностей.`;
+            if (gameOverMessage) {
+                gameOverMessage.style.display = "block";
+                gameOverMessage.textContent = `Игра окончена! Ты собрал ${score} последовательностей.`;
+            }
             updateEnergy();
             clearInterval(timerInterval);
         }
