@@ -77,7 +77,7 @@ function startTimer() {
                 gameActive = false;
                 if (gameOverMessage) {
                     gameOverMessage.style.display = "block";
-                    gameOverMessage.textContent = `Игра окончена! Ты собрал ${score} последовательностей.`;
+                    gameOverMessage.textContent = `Игра окончена из-за нехватки энергии! Ты собрал ${score} последовательностей.`; // Уточняем причину
                 }
                 updateEnergy();
                 clearInterval(timerInterval);
@@ -100,7 +100,7 @@ function createBoard() {
             cell.classList.add("cell");
             cell.dataset.row = i;
             cell.dataset.col = j;
-            cell.addEventListener("click", handleClick); // Убеждаемся, что слушатель добавляется
+            cell.addEventListener("click", handleClick);
             gameBoard.appendChild(cell);
             board[i][j] = null;
         }
@@ -187,7 +187,7 @@ function handleClick(event) {
     const col = parseInt(event.target.dataset.col);
     const color = board[row][col];
 
-    if (!color || !event.target.classList.contains("appear")) return; // Проверяем, что клетка активна
+    if (!color || !event.target.classList.contains("appear")) return;
 
     const targetColor = sequence[currentSequenceIndex];
     if (color === targetColor) {
@@ -222,7 +222,7 @@ function handleClick(event) {
             gameActive = false;
             if (gameOverMessage) {
                 gameOverMessage.style.display = "block";
-                gameOverMessage.textContent = `Игра окончена! Ты собрал ${score} последовательностей.`;
+                gameOverMessage.textContent = `Игра окончена из-за нехватки энергии! Ты собрал ${score} последовательностей.`; // Уточняем причину
             }
             updateEnergy();
             clearInterval(timerInterval);
