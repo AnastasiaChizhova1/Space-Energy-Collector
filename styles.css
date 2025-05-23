@@ -109,7 +109,8 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.9rem;
+    font-size: 1.2rem; /* Увеличим размер символа для видимости */
+    font-weight: bold; /* Делаем символ более заметным */
 }
 
 #score {
