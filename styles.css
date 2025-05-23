@@ -9,30 +9,32 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     padding: 20px;
+    margin: 0; /* Убираем стандартные отступы */
+    box-sizing: border-box;
 }
 
 .container {
     background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
-    max-width: 700px; /* Увеличим ширину для длинных текстов */
+    max-width: 90%; /* Уменьшаем ширину для мобильных */
     width: 100%;
     box-sizing: border-box;
-    min-height: 400px; /* Минимальная высота для размещения текста */
+    min-height: 300px; /* Уменьшаем минимальную высоту */
 }
 
 h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 1.5rem; /* Уменьшаем заголовок */
+    margin-bottom: 15px;
     text-shadow: 0 0 10px #4a90e2;
 }
 
 #gameBoard {
     display: grid;
     gap: 5px;
-    margin: 20px auto;
-    width: 300px;
-    height: 300px;
+    margin: 15px auto;
+    width: 250px; /* Уменьшаем размер поля */
+    height: 250px;
 }
 
 .cell {
@@ -78,24 +80,24 @@ h1 {
 .yellow { background: #ffeb3b; box-shadow: 0 0 10px #ffeb3b; }
 
 #sequence {
-    font-size: 1.2rem;
+    font-size: 1rem; /* Уменьшаем текст */
     margin: 10px 0;
     word-wrap: break-word;
-    white-space: normal; /* Убедимся, что текст переносится */
+    white-space: normal;
     max-width: 100%;
-    padding: 15px; /* Увеличим отступы */
-    line-height: 1.5; /* Улучшим читаемость */
+    padding: 10px;
+    line-height: 1.4;
 }
 
 #timer {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #ff4444;
     margin: 10px 0;
 }
 
 .energy-bar {
     width: 100%;
-    max-width: 300px;
+    max-width: 250px; /* Уменьшаем прогресс-бар */
     background: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
     margin: 10px auto;
@@ -109,15 +111,15 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    text-shadow: 0 0 5px #fff; /* Свечение для лучшей видимости */
-    min-width: 20px; /* Минимальная ширина для символа */
-    color: #000; /* Чёрный цвет символа для контраста */
+    text-shadow: 0 0 5px #fff;
+    min-width: 20px;
+    color: #000;
 }
 
 #score {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #4caf50;
 }
 
@@ -125,10 +127,11 @@ button {
     background: #4a90e2;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 8px 16px; /* Уменьшаем кнопку */
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    font-size: 0.9rem;
 }
 
 button:hover {
@@ -136,11 +139,61 @@ button:hover {
 }
 
 #ad-container {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 footer {
-    margin-top: 20px;
-    font-size: 0.9rem;
+    margin-top: 15px;
+    font-size: 0.8rem;
     text-align: center;
+}
+
+#gameOverMessage {
+    font-size: 1rem;
+    margin: 10px 0;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    color: #ff4444;
+    word-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
+    line-height: 1.4;
+}
+
+/* Адаптация для маленьких экранов (Telegram Mini App) */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        max-width: 100%;
+        min-height: 250px;
+        padding: 10px;
+    }
+    h1 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    #gameBoard {
+        width: 200px; /* Ещё уменьшаем поле */
+        height: 200px;
+    }
+    #sequence, #timer, #score, #gameOverMessage {
+        font-size: 0.9rem;
+        padding: 5px;
+    }
+    .energy-bar {
+        max-width: 200px;
+    }
+    #energy {
+        font-size: 1rem;
+    }
+    button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    footer {
+        font-size: 0.7rem;
+    }
 }
