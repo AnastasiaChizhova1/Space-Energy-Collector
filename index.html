@@ -19,11 +19,14 @@
         <div id="sequence"></div>
         <div id="gameOverMessage" style="display: none;"></div> <!-- Добавляем этот div -->
         <div id="gameBoard"></div>
-        <button onclick="startGame()">Новая игра</button>
+        <div id="game-controls" style="text-align: center; margin-top: 20px;">
+            <button id="new-game-btn" onclick="startGame()">Новая игра</button>
+            <button id="donate-btn" onclick="window.open('https://boosty.to/gamecosmickollectorenergy/donate', '_blank')">Донаты</button>
+        </div>
         <div id="ad-container" style="margin-top: 20px;"></div>
     </div>
     <footer>
-        <p>Политика конфиденциальности: Мы можем собирать данные для рекламы (cookies, IP-адреса) и донатов (имя, email, платёжные данные через ЮKassa). Вы можете запросить удаление данных, написав на anastasiiachizhova98@gmail.com.</p>
+        <p>Политика конфиденциальности: Мы можем собирать данные для рекламы (cookies, IP-адреса) и донатов (имя, email, платёжные данные через boosty). Дополнительную информацию вы можете запросить удаление данных, написав на anastasiiachizhova98@gmail.com.</p>
     </footer>
     <script src="game.js"></script>
 </body>
