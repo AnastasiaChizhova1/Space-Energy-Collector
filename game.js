@@ -9,6 +9,7 @@ let score = 0;
 let timeLeft = 30;
 let gameActive = false;
 let timerInterval = null;
+let gameStartCount = 0; // Счётчик запусков игры
 
 // Получаем элементы DOM
 const gameBoard = document.getElementById("gameBoard");
@@ -20,7 +21,10 @@ const gameOverMessage = document.getElementById("gameOverMessage");
 
 // Функция для обновления прогресс-бара энергии
 function updateEnergy() {
-    if (!energyDiv) return;
+    if (!energyDiv) {
+        console.error("Energy div not found in DOM");
+        return;
+    }
     energyDiv.style.width = energy === 0 ? '20px' : `${energy}%`;
     energyDiv.textContent = '⚡';
     if (energy > 60) {
@@ -30,10 +34,14 @@ function updateEnergy() {
     } else {
         energyDiv.style.background = "#ff4444";
     }
+    console.log(`Energy updated to ${energy}% at ${new Date().toISOString()}`);
 }
 
 // Функция для начала новой игры
 function startGame() {
+    gameStartCount++; // Увеличиваем счётчик запусков
+    console.log(`User started a new game at ${new Date().toISOString()} | Total starts: ${gameStartCount}`);
+
     boardSize = 5;
     board = [];
     sequence = [];
@@ -45,9 +53,17 @@ function startGame() {
 
     updateEnergy();
     if (scoreDiv) scoreDiv.textContent = `Собранные последовательности: ${score}`;
+    else console.error("Score div not found in DOM");
+
     if (timerDiv) timerDiv.textContent = `Время: ${timeLeft}`;
+    else console.error("Timer div not found in DOM");
+
     if (gameOverMessage) gameOverMessage.style.display = "none";
+    else console.error("GameOverMessage div not found in DOM");
+
     if (sequenceDiv) sequenceDiv.innerHTML = "";
+    else console.error("Sequence div not found in DOM");
+
     createBoard();
     generateSequence();
     updateSequenceDisplay();
@@ -57,10 +73,14 @@ function startGame() {
 
 // Функция для запуска таймера
 function startTimer() {
-    if (timerInterval) clearInterval(timerInterval);
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        console.log(`Cleared previous timer interval at ${new Date().toISOString()}`);
+    }
     timerInterval = setInterval(() => {
         if (!gameActive) {
             clearInterval(timerInterval);
+            console.log(`Game stopped, timer cleared at ${new Date().toISOString()}`);
             return;
         }
 
@@ -77,7 +97,8 @@ function startTimer() {
                 gameActive = false;
                 if (gameOverMessage) {
                     gameOverMessage.style.display = "block";
-                    gameOverMessage.textContent = `Игра окончена из-за нехватки энергии! Ты собрал ${score} последовательностей.`; // Уточняем причину
+                    gameOverMessage.textContent = `Игра окончена из-за нехватки энергии! Ты собрал ${score} последовательностей.`;
+                    console.log(`Game over due to lack of energy at ${new Date().toISOString()} | Final score: ${score}`);
                 }
                 updateEnergy();
                 clearInterval(timerInterval);
@@ -88,7 +109,10 @@ function startTimer() {
 
 // Создаём игровое поле
 function createBoard() {
-    if (!gameBoard) return;
+    if (!gameBoard) {
+        console.error("GameBoard div not found in DOM");
+        return;
+    }
     gameBoard.style.gridTemplateColumns = `repeat(${boardSize}, 1fr)`;
     gameBoard.innerHTML = "";
     board = [];
@@ -105,6 +129,7 @@ function createBoard() {
             board[i][j] = null;
         }
     }
+    console.log(`Game board created with size ${boardSize}x${boardSize} at ${new Date().toISOString()}`);
 }
 
 // Генерируем последовательность для сбора
@@ -114,11 +139,15 @@ function generateSequence() {
         sequence.push(colors[Math.floor(Math.random() * colors.length)]);
     }
     updateSequenceDisplay();
+    console.log(`New sequence generated: ${sequence.join(" -> ")} at ${new Date().toISOString()}`);
 }
 
 // Обновляем отображение последовательности
 function updateSequenceDisplay() {
-    if (!sequenceDiv) return;
+    if (!sequenceDiv) {
+        console.error("Sequence div not found in DOM");
+        return;
+    }
     sequenceDiv.innerHTML = "Собери: ";
     sequence.forEach((color, index) => {
         const span = document.createElement("span");
@@ -169,7 +198,10 @@ function spawnCrystals() {
 // Обновляем отображение клетки
 function updateCell(row, col) {
     const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
-    if (!cell) return;
+    if (!cell) {
+        console.error(`Cell at row ${row}, col ${col} not found in DOM`);
+        return;
+    }
     cell.className = "cell";
     if (board[row][col]) {
         cell.classList.add(board[row][col]);
@@ -189,6 +221,8 @@ function handleClick(event) {
 
     if (!color || !event.target.classList.contains("appear")) return;
 
+    console.log(`User clicked cell at row ${row}, col ${col} with color ${color} at ${new Date().toISOString()}`);
+
     const targetColor = sequence[currentSequenceIndex];
     if (color === targetColor) {
         const cell = event.target;
@@ -206,6 +240,7 @@ function handleClick(event) {
             generateSequence();
             timeLeft = 30;
             if (timerDiv) timerDiv.textContent = `Время: ${timeLeft}`;
+            console.log(`Sequence completed! Score: ${score} at ${new Date().toISOString()}`);
 
             if (score % 5 === 0) {
                 boardSize++;
@@ -218,15 +253,13 @@ function handleClick(event) {
     } else {
         energy -= 10;
         updateEnergy();
-        console.log("Энергия уменьшена до:", energy); // Отладка значения энергии
+        console.log(`Incorrect click, energy decreased to ${energy} at ${new Date().toISOString()}`);
         if (energy <= 0) {
             gameActive = false;
             if (gameOverMessage) {
-                console.log("Игра окончена, отображаем сообщение");
                 gameOverMessage.style.display = "block";
                 gameOverMessage.textContent = `Игра окончена из-за нехватки энергии! Ты собрал ${score} последовательностей.`;
-            } else {
-                console.log("Ошибка: gameOverMessage не найден в DOM");
+                console.log(`Game over due to lack of energy at ${new Date().toISOString()} | Final score: ${score}`);
             }
             updateEnergy();
             clearInterval(timerInterval);
@@ -235,4 +268,6 @@ function handleClick(event) {
 }
 
 // Запускаем игру при загрузке страницы
-startGame();
+window.onload = function() {
+    startGame();
+};
