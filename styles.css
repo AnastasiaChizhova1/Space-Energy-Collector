@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to bottom, #2e2e5f, #1a1a2a);
+    background: linear-gradient(to bottom, #1e1e2f, #000000);
     color: white;
     min-height: 100vh;
     display: flex;
@@ -9,31 +9,31 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     padding: 20px;
-    margin: 0;
+    margin: 0; /* Убираем стандартные отступы */
     box-sizing: border-box;
 }
 
 .container {
-    background: rgba(100, 100, 150, 0.2);
+    background: rgba(255, 255, 255, 0.1);
     padding: 15px;
     border-radius: 10px;
-    max-width: 90%;
+    max-width: 90%; /* Уменьшаем ширину для мобильных */
     width: 100%;
     box-sizing: border-box;
-    min-height: 300px;
+    min-height: 300px; /* Уменьшаем минимальную высоту */
 }
 
 h1 {
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* Уменьшаем заголовок */
     margin-bottom: 15px;
-    text-shadow: 0 0 10px #00AAFF; /* Изменил синий для заголовка */
+    text-shadow: 0 0 10px #4a90e2;
 }
 
 #gameBoard {
     display: grid;
     gap: 5px;
     margin: 15px auto;
-    width: 250px;
+    width: 250px; /* Уменьшаем размер поля */
     height: 250px;
 }
 
@@ -74,13 +74,13 @@ h1 {
     }
 }
 
-.red { background: #FF5555; box-shadow: 0 0 10px #FF5555; }
-.blue { background: #00AAFF; box-shadow: 0 0 10px #00AAFF; }
-.green { background: #55FF55; box-shadow: 0 0 10px #55FF55; }
-.yellow { background: #FFFF55; box-shadow: 0 0 10px #FFFF55; }
+.red { background: #ff4444; box-shadow: 0 0 10px #ff4444; }
+.blue { background: #4a90e2; box-shadow: 0 0 10px #4a90e2; }
+.green { background: #4caf50; box-shadow: 0 0 10px #4caf50; }
+.yellow { background: #ffeb3b; box-shadow: 0 0 10px #ffeb3b; }
 
 #sequence {
-    font-size: 1rem;
+    font-size: 1rem; /* Уменьшаем текст */
     margin: 10px 0;
     word-wrap: break-word;
     white-space: normal;
@@ -91,13 +91,13 @@ h1 {
 
 #timer {
     font-size: 1rem;
-    color: #FF0000;
+    color: #ff4444;
     margin: 10px 0;
 }
 
 .energy-bar {
     width: 100%;
-    max-width: 250px;
+    max-width: 250px; /* Уменьшаем прогресс-бар */
     background: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
     margin: 10px auto;
@@ -106,7 +106,7 @@ h1 {
 
 #energy {
     height: 20px;
-    background: #00FF00;
+    background: #4caf50;
     transition: width 0.3s, background 0.3s;
     display: flex;
     align-items: center;
@@ -120,14 +120,14 @@ h1 {
 
 #score {
     font-size: 1rem;
-    color: #00FF00;
+    color: #4caf50;
 }
 
 button {
-    background: #00AAFF;
+    background: #4a90e2;
     color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 8px 16px; /* Уменьшаем кнопку */
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
@@ -135,7 +135,7 @@ button {
 }
 
 button:hover {
-    background: #0088CC;
+    background: #357abd;
 }
 
 #ad-container {
@@ -154,7 +154,7 @@ footer {
     padding: 8px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
-    color: #FF0000;
+    color: #ff4444;
     word-wrap: break-word;
     white-space: normal;
     max-width: 100%;
@@ -176,7 +176,7 @@ footer {
         margin-bottom: 10px;
     }
     #gameBoard {
-        width: 200px;
+        width: 200px; /* Ещё уменьшаем поле */
         height: 200px;
     }
     #sequence, #timer, #score, #gameOverMessage {
