@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to bottom, #57ffff, #000000); /* Фон страницы */
+    background: linear-gradient(to bottom, #393451, #000000); /* Фон страницы */
     color: white; /* Цвет текста по умолчанию (например, заголовки, текст в футере) */
     min-height: 100vh;
     display: flex;
