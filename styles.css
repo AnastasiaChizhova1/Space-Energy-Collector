@@ -1,6 +1,6 @@
 body {
-    background: linear-gradient(to bottom, #1e1e2f, #000000);
-    color: white;
+    background: linear-gradient(to bottom, #2e2e5f, #1a1a2a); /* Фон страницы */
+    color: white; /* Цвет текста по умолчанию (например, заголовки, текст в футере) */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -14,7 +14,7 @@ body {
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(100, 100, 150, 0.2); /* Фон контейнера игры */
     padding: 15px;
     border-radius: 10px;
     max-width: 90%; /* Уменьшаем ширину для мобильных */
@@ -26,7 +26,7 @@ body {
 h1 {
     font-size: 1.5rem; /* Уменьшаем заголовок */
     margin-bottom: 15px;
-    text-shadow: 0 0 10px #4a90e2;
+    text-shadow: 0 0 10px #00AAFF; /* Цвет тени заголовка */
 }
 
 #gameBoard {
@@ -38,7 +38,7 @@ h1 {
 }
 
 .cell {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2); /* Фон клеток по умолчанию */
     border-radius: 5px;
     cursor: pointer;
     transition: transform 0.2s;
@@ -74,10 +74,22 @@ h1 {
     }
 }
 
-.red { background: #ff4444; box-shadow: 0 0 10px #ff4444; }
-.blue { background: #4a90e2; box-shadow: 0 0 10px #4a90e2; }
-.green { background: #4caf50; box-shadow: 0 0 10px #4caf50; }
-.yellow { background: #ffeb3b; box-shadow: 0 0 10px #ffeb3b; }
+.red { 
+    background: #FF5555; /* Цвет клеток "red" в последовательности */
+    box-shadow: 0 0 10px #FF5555; 
+}
+.blue { 
+    background: #00AAFF; /* Цвет клеток "blue" в последовательности */
+    box-shadow: 0 0 10px #00AAFF; 
+}
+.green { 
+    background: #55FF55; /* Цвет клеток "green" в последовательности */
+    box-shadow: 0 0 10px #55FF55; 
+}
+.yellow { 
+    background: #FFFF55; /* Цвет клеток "yellow" в последовательности */
+    box-shadow: 0 0 10px #FFFF55; 
+}
 
 #sequence {
     font-size: 1rem; /* Уменьшаем текст */
@@ -87,18 +99,19 @@ h1 {
     max-width: 100%;
     padding: 10px;
     line-height: 1.4;
+    color: #00AAFF; /* Цвет текста "Собери:" перед последовательностью */
 }
 
 #timer {
     font-size: 1rem;
-    color: #ff4444;
+    color: #FF0000; /* Цвет текста "Время: ..." */
     margin: 10px 0;
 }
 
 .energy-bar {
     width: 100%;
     max-width: 250px; /* Уменьшаем прогресс-бар */
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2); /* Фон прогресс-бара */
     border-radius: 5px;
     margin: 10px auto;
     overflow: hidden;
@@ -106,7 +119,7 @@ h1 {
 
 #energy {
     height: 20px;
-    background: #4caf50;
+    background: #00FF00; /* Цвет фона прогресс-бара энергии (зелёный, >60%) */
     transition: width 0.3s, background 0.3s;
     display: flex;
     align-items: center;
@@ -115,17 +128,17 @@ h1 {
     font-weight: bold;
     text-shadow: 0 0 5px #fff;
     min-width: 20px;
-    color: #000;
+    color: #FFFFFF; /* Цвет текста "⚡" в прогресс-баре */
 }
 
 #score {
     font-size: 1rem;
-    color: #4caf50;
+    color: #00FF00; /* Цвет текста "Собранные последовательности: ..." */
 }
 
 button {
-    background: #4a90e2;
-    color: white;
+    background: #00AAFF; /* Цвет фона кнопки "Начать заново" */
+    color: white; /* Цвет текста на кнопке */
     border: none;
     padding: 8px 16px; /* Уменьшаем кнопку */
     border-radius: 5px;
@@ -135,7 +148,7 @@ button {
 }
 
 button:hover {
-    background: #357abd;
+    background: #0088CC; /* Цвет фона кнопки при наведении */
 }
 
 #ad-container {
@@ -146,15 +159,16 @@ footer {
     margin-top: 15px;
     font-size: 0.8rem;
     text-align: center;
+    color: white; /* Цвет текста в футере */
 }
 
 #gameOverMessage {
     font-size: 1rem;
     margin: 10px 0;
     padding: 8px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2); /* Фон сообщения об окончании */
     border-radius: 5px;
-    color: #ff4444;
+    color: #FF69B4; /* Цвет текста "Игра окончена..." */
     word-wrap: break-word;
     white-space: normal;
     max-width: 100%;
