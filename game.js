@@ -1,5 +1,5 @@
 // Определяем основные переменные
-const colors = ["red", "#00AAFF", "green", "yellow"];
+const colors = ["red", "blue", "green", "yellow"];
 let boardSize = 5;
 let board = [];
 let sequence = [];
